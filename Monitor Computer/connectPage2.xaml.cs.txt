@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Media.Animation;
+using MahApps.Metro.Controls.Dialogs;
+using System.Threading;
+
+namespace Monitor_Computer
+{
+    /// <summary>
+    /// Interaction logic for connectPage2.xaml
+    /// </summary>
+    public partial class connectPage2 : Page
+    {
+        private MainWindow mainWindowClass;
+        public connectPage2(MainWindow mainWindowClass)
+        {
+            InitializeComponent();
+            this.mainWindowClass = mainWindowClass; 
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 1;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            ThicknessAnimation animation = new ThicknessAnimation();
+            Thickness marginFrom = new Thickness();
+            marginFrom.Left = 30;
+            Thickness marginTo = new Thickness();
+            marginTo.Left = 0;
+            animation.From = marginFrom;
+            animation.To = marginTo;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            connectPage1 connect1 = new connectPage1(mainWindowClass,false);
+            this.NavigationService.Navigate(connect1);
+            connect1.BeginAnimation(Page.OpacityProperty, da);
+            connect1.BeginAnimation(Page.MarginProperty, animation);
+            //this.NavigationService.Navigate(new Uri("connectPage1.xaml", UriKind.Relative));
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ipTextBox.Text != "" && portTextBox.Text != "")
+            {
+                mainWindowClass.ipToConnect = ipTextBox.Text;
+                mainWindowClass.portToConnect = Int32.Parse(portTextBox.Text);
+                mainWindowClass.passwordToConnect = passwordTextBox.Password;
+                mainWindowClass.startThisShit();
+            }
+            else
+                fieldNotComplete();
+        }
+
+        private async void helpButton_Click(object sender, RoutedEventArgs e)
+        {
+            await mainWindowClass.ShowMessageAsync("What does buttons do ?", "Set Home - it will save the ip and password so you can connect next time without writing them down again\nConnect Home - it will connect to your saved ip\nConnect Last Ip - it will connect to your last ip entered");
+        }
+
+        private void setHomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ipTextBox.Text != "" && portTextBox.Text != "")
+            {
+                mainWindowClass.homeIp = ipTextBox.Text;
+                mainWindowClass.homePort = portTextBox.Text;
+                mainWindowClass.homePassword = passwordTextBox.Password;
+                mainWindowClass.homeSet = "true";
+                homeSetValide();
+            }
+            else
+                fieldNotComplete();
+
+        }
+        private async void fieldNotComplete()
+        {
+            await mainWindowClass.ShowMessageAsync("Error", "Some fields are empty");
+        }
+        private async void homeSetValide()
+        {
+            await mainWindowClass.ShowMessageAsync("Succes", "Your home ip was saved");
+        }
+        private async void notEvenAConnection()
+        {
+            await mainWindowClass.ShowMessageAsync("Error", "You don't have any last ip");
+        }
+
+        private void portTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            int iValue = -1;
+
+            if (Int32.TryParse(textBox.Text, out iValue) == false)
+            {
+                TextChange textChange = e.Changes.ElementAt<TextChange>(0);
+                int iAddedLength = textChange.AddedLength;
+                int iOffset = textChange.Offset;
+
+                textBox.Text = textBox.Text.Remove(iOffset, iAddedLength);
+            }
+            try
+            {
+                if (Convert.ToInt32(portTextBox.Text) <= 0 || Convert.ToInt32(portTextBox.Text) >= 65535)
+                {
+                    portTextBox.Text = "1";
+                }
+            }
+            catch (Exception)  {  }
+        }
+
+        private void connectHomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainWindowClass.homeSet=="true")
+            {
+                mainWindowClass.ipToConnect = mainWindowClass.homeIp;
+                mainWindowClass.portToConnect = Int32.Parse(mainWindowClass.homePort);
+                mainWindowClass.passwordToConnect = mainWindowClass.homePassword;
+                mainWindowClass.startThisShit();
+            }
+            else
+                fieldNotComplete();
+        }
+
+        private void connectLastIpButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainWindowClass.ipToConnect != "" && mainWindowClass.portToConnect != 0)
+            {
+                mainWindowClass.startThisShit();
+            }
+            else
+                notEvenAConnection();
+        }
+    }
+}

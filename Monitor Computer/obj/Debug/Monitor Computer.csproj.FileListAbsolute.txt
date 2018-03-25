@@ -1,0 +1,173 @@
+c:\users\vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.g.cs
+c:\users\vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\App.g.cs
+c:\users\vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.baml
+c:\users\vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Monitor_Computer.Properties.Resources.resources
+c:\users\vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csproj.GenerateResource.Cache
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.dll
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.pdb
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.xml
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\App.baml
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.baml
+C:\Users\Vitoc\Documents\Visual Studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\serverPage.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\serverPage.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Windows.winmd
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe.config
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.pdb
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.cache
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.lref
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.g.resources
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.exe
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.pdb
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.baml
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csprojResolveAssemblyReference.cache
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Chat.g.cs
+C:\Users\Vitoc\documents\visual studio 2015\Projects\Monitor Computer\Monitor Computer\obj\Debug\Chat.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe.config
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.exe
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.pdb
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.pdb
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.pdb
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.xml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Chat.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\serverPage.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\App.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.cache
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.lref
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\App.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Chat.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\serverPage.baml
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.g.resources
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor_Computer.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csproj.GenerateResource.Cache
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe.config
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.exe
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.pdb
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.exe
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MonitorComputer.pdb
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Windows.winmd
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.pdb
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\MahApps.Metro.xml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csprojResolveAssemblyReference.cache
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Chat.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Resources\Icons.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\serverPage.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\App.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.cache
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer_MarkupCompile.lref
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\App.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Chat.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage1.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage2.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\connectPage3.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MainWindow.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedback.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage1.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\sendFeedbackPage2.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\serverPage.baml
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\MonitorComputer.g.resources
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor_Computer.Properties.Resources.resources
+C:\Users\Selena\Desktop\Monitor Computer\Monitor Computer\obj\Debug\Monitor Computer.csproj.GenerateResource.Cache

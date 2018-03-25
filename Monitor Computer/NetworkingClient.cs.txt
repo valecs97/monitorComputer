@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
+using MahApps.Metro.Controls.Dialogs;
+
+namespace Monitor_Computer
+{
+    class NetworkingClient
+    {
+        private MainWindow mainWindowClass;
+        private receiveCommandsClient receiveCommandsClientClass;
+        public NetworkingClient(MainWindow mainWindowClass)
+        {
+            receiveCommandsClientClass = new receiveCommandsClient(this,mainWindowClass);
+            this.mainWindowClass = mainWindowClass;
+        }
+        NetworkStream server;
+
+        System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
+        private bool isConnected = false, closeCommand = false;
+        public int makeConnection()
+        {
+            closeCommand = false;
+            client = new System.Net.Sockets.TcpClient();
+            try
+            {
+                client.Connect(mainWindowClass.ipToConnect, mainWindowClass.portToConnect);
+            }
+            catch (SocketException ex)
+            {
+                if (ex.SocketErrorCode == SocketError.ConnectionRefused)
+                    return 1;
+                else if (ex.SocketErrorCode == SocketError.HostNotFound)
+                    return 2;
+                else if (ex.SocketErrorCode == SocketError.TimedOut)
+                    return 3;
+                else if (ex.SocketErrorCode == SocketError.NetworkUnreachable)
+                    return 4;
+                else MessageBox.Show(ex.ToString());
+            }
+            passwordCheck();
+            Thread receiveCommandsThread = new Thread(receiveCommands);
+            receiveCommandsThread.Start();
+            if (isConnected == true)
+                return 0;
+            else
+                return -1;
+        }
+        private void passwordCheck()
+        {
+            sendCommand(mainWindowClass.passwordToConnect);
+            server = client.GetStream();
+            byte[] inStream = new byte[100250];
+            server.Read(inStream, 0, (int)client.ReceiveBufferSize);
+            string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+            returndata = returndata.Substring(0, returndata.IndexOf("$"));
+            if (returndata == "YouShallNotPass")
+                isConnected = false;
+            else if (returndata == "YouShallPass")
+                isConnected = true;
+
+        }
+        public void sendCommand(string dataToSend)
+        {
+             server = client.GetStream();
+             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(dataToSend + "$");
+             server.Write(outStream, 0, (int)outStream.Length);
+             server.Flush();
+        }
+        public void receiveCommands()
+        {
+            try {
+                while (isConnected)
+                {
+                    server = client.GetStream();
+                    byte[] inStream = new byte[100250];
+                    server.Read(inStream, 0, (int)client.ReceiveBufferSize);
+                    server.Flush();
+                    string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                    returndata = returndata.Substring(0, returndata.IndexOf("$"));
+                    if (returndata == "Closes")
+                    {
+                        if (!closeCommand)
+                            mainWindowClass.notification("The server has shut down. You have been disconnected !");
+                        closeClient();
+                        isConnected = false;
+                       
+                    }
+                    string command = returndata.Substring(0, 6);
+                    switch (command)
+                    {
+                        case "mntsts":
+                            {
+                                command = returndata.Substring(6);
+                                int i = 0;
+                                string aux="";
+                                while (command[i] != ' ')
+                                {
+                                    aux += command[i];
+                                    i++;
+                                }
+                                i++;
+                                receiveCommandsClientClass.receiveCpuCounter(aux);
+                                aux = "";
+                                while (command[i] != ' ')
+                                {
+                                    aux += command[i];
+                                    i++;
+                                }
+                                i++;
+                                
+                                receiveCommandsClientClass.receiveRamCounter(aux);
+                                //MessageBox.Show(command[i].ToString());
+                                if (command[i] == 'y')
+                                    receiveCommandsClientClass.cpuWarningMessage();
+                                i += 2;
+                                if (command[i] == 'y')
+                                    receiveCommandsClientClass.ramWarningMessage();
+                            }; break;
+                        case "stpmnt": receiveCommandsClientClass.stopReceiving();break;
+                    }
+                }
+                client.Close();
+                server.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                showForceClosedError();
+                isConnected = false;
+                closeCommand = true;
+                mainWindowClass.restoreConnectPage1Default();
+                closeClient();
+            }
+            receiveCommandsClientClass.stopReceiving();
+        }
+
+        private async void showForceClosedError()
+        {
+            await mainWindowClass.Dispatcher.BeginInvoke(new Action(async () => await mainWindowClass.ShowMessageAsync("Whoopss", "It seems that the server was closed !")));
+        }
+        /*
+                public void startMonitoring()
+                {
+                    server = client.GetStream();
+                    byte[] outStream = System.Text.Encoding.ASCII.GetBytes("StartMonitoring" + "$");
+                    server.Write(outStream, 0, (int)outStream.Length);
+                    server.Flush();
+                }
+                public void stopMonitoring()
+                {
+                    server = client.GetStream();
+                    byte[] outStream = System.Text.Encoding.ASCII.GetBytes("StopMonitoring" + "$");
+                    server.Write(outStream, 0, (int)outStream.Length);
+                    server.Flush();
+                }
+        */
+        public void startMonitoring()
+        {
+            receiveCommandsClientClass.sendCpuRamTime();
+        }
+        public void stopMonitoring()
+        {
+            sendCommand("stpmnt");
+        }
+        public void closeClient()
+        {
+            System.Threading.Thread.Sleep(100);
+            if (!closeCommand)
+            {
+                try {
+                    mainWindowClass.Dispatcher.Invoke(new Action(() => mainWindowClass.statusControl.Content = "Status : disconnected"));
+                }
+                catch (TaskCanceledException) { }
+                closeCommand = true;
+                mainWindowClass.restoreConnectPage1Default();
+                mainWindowClass.taskManagerTab.Dispatcher.Invoke(new Action(() => mainWindowClass.taskManagerTab.IsEnabled = false));
+                mainWindowClass.commandsTab.Dispatcher.Invoke(new Action(() => mainWindowClass.commandsTab.IsEnabled = false));
+                mainWindowClass.shutDownComputer.Dispatcher.Invoke(new Action(() => mainWindowClass.shutDownComputer.IsEnabled = false));
+                sendCommand("Closes");
+            }
+            else
+            {
+                mainWindowClass.Dispatcher.Invoke(new Action(() => mainWindowClass.statusControl.Content = "Status : offline"));
+            }
+        }
+    }
+}

@@ -1,0 +1,458 @@
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System.Threading;
+using System.Windows.Threading;
+using System.Xml;
+using Windows.UI.Notifications;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Xaml;
+using System.IO;
+using Monitor_Computer.Properties;
+using System.Resources;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using Hardcodet.Wpf.TaskbarNotification;
+using System.Net.Mail;
+using System.Text;
+using System.Reflection;
+using System.Drawing;
+using System.Windows.Markup;
+using System.Windows.Media.Animation;
+
+namespace Monitor_Computer
+{
+    /*
+    Legend
+
+    When sending a command be sure to have EXACLY 6 letters , else it wont work
+
+    strmnt = start monitoring
+    stpmnt = stop monitoring
+
+    */
+    public partial class MainWindow
+    {
+        private NetworkingClient networkingClientClass;
+        private NetworkingServer networkingServerClass;
+        public string[] settings;
+        public string homeIp, homePort, homePassword, homeSet="false";
+        public string serverPassword;
+        public int serverPort;
+        public bool serverBootUp, keepServerOnAfterClient,didItConnect;
+        public string ipToConnect, passwordToConnect;
+        public int portToConnect;
+        public System.Windows.Controls.Button addButton;
+        public System.Windows.Controls.Button[] closeButton = new System.Windows.Controls.Button[5];
+        public int[] buttonOrder = new int[5] {-1,-1,-1,-1,-1};
+        public int numberCloseButtons = -1,buttonRealNumber=0,buttonFakeNumber=0;
+        bool canItClose = true;
+        sendFeedback sendFeedbackWindow;
+        public MainWindow()
+        {
+            InitializeComponent();
+            ((Control)this.taskManagerTab).IsEnabled = false;
+            ((Control)this.commandsTab).IsEnabled = false;
+            networkingClientClass = new NetworkingClient(this);
+            networkingServerClass = new NetworkingServer(this);
+            connectWindow.Navigate(new connectPage1(this,false));
+            try {
+                string[] settings = System.IO.File.ReadAllLines(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "computerMonitorSettings.txt"));
+                foreach (string line in settings)
+                {
+                    string stringSave = line.Substring(0, line.IndexOf("="));
+                    
+                    switch(stringSave)
+                    {
+                        case "home_ip":
+                                homeIp = line.Substring(line.IndexOf("=")+1);break;
+                        case "home_port":
+                            homePort = line.Substring(line.IndexOf("=") + 1); break;
+                        case "home_password":
+                            homePassword = line.Substring(line.IndexOf("=") + 1); break;
+                        case "home_set":
+                            homeSet = line.Substring(line.IndexOf("=") + 1); break;
+                        case "last_ip":
+                            ipToConnect = line.Substring(line.IndexOf("=") + 1); break;
+                        case "last_port":
+                            portToConnect = Int32.Parse(line.Substring(line.IndexOf("=") + 1)); break;
+                        case "last_password":
+                            passwordToConnect = line.Substring(line.IndexOf("=") + 1); break;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Thread newUserMessage = new Thread(newUser);
+                newUserMessage.Start();
+            }
+            //TextReader tr = new StreamReader(@"button1.txt");
+            string childXaml = XamlWriter.Save(caca2Button);
+            StringReader stringReader = new StringReader(childXaml);
+            XmlReader xmlReader = XmlReader.Create(stringReader);
+            addButton = (Button)XamlReader.Load(xmlReader);
+            addButton.Name = "addButton";
+            addButton.Opacity = 100;
+            addButton.IsEnabled = true;
+            addButton.Click += addButton_Click;
+            simpleTaskManagerStackBar.Children.Add(addButton);
+        }
+
+
+        private void newUser()
+        {
+            System.Threading.Thread.Sleep(1000);
+            this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Welcome !!!", "It seems that you are new here , so please check the help section first :)")));
+        }
+        public void OnExitCommands()
+        {
+            notificationIcon.Dispose();
+            keepServerOnAfterClient = false;
+            string[] settings = { "home_ip=" + homeIp, "home_port=" + homePort, "home_password=" + homePassword,"home_set=" + homeSet, "last_ip=" + ipToConnect ,"last_port=" + portToConnect.ToString(),"last_password="+passwordToConnect};
+            System.IO.File.WriteAllLines(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "computerMonitorSettings.txt") , settings);
+            if (statusControl.Content.ToString() != "Status : offline" && !didItConnect)
+                stopServer();
+            if (statusControl.Content.ToString() != "Status : offline" && didItConnect)
+                stopClient();
+        }
+
+        private void addButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (numberCloseButtons < 4)
+            {
+                simpleTaskManagerStackBar.Children.Remove(addButton);
+                string newChildXaml = XamlWriter.Save(cacaButton);
+                StringReader newStringReader = new StringReader(newChildXaml);
+                XmlReader newXmlReader = XmlReader.Create(newStringReader);
+                ThicknessAnimation addButtonAnimation = new ThicknessAnimation();
+                Thickness ThFrom = new Thickness();
+                ThFrom.Bottom = 0;
+                ThFrom.Left = 0;
+                ThFrom.Right = 0;
+                ThFrom.Top = -40;
+                Thickness ThTo = new Thickness();
+                ThTo.Bottom = 0;
+                ThTo.Left = 0;
+                ThTo.Right = 0;
+                ThTo.Top = 0;
+                addButtonAnimation.From = ThFrom;
+                addButtonAnimation.To = ThTo;
+                addButtonAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(200));
+                DoubleAnimation newBtnAnimation = new DoubleAnimation();
+                newBtnAnimation.From = 0;
+                newBtnAnimation.To = 1;
+                numberCloseButtons++;
+                newBtnAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(250));
+                bool ok = true, okk = true;
+                int but = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    if (ok)
+                    {
+                        ok = false;
+                        for (int j = 0; j < numberCloseButtons; j++)
+                            if (buttonOrder[j] == i)
+                                ok = true;
+                    }
+
+                    if (!ok && okk)
+                    {
+                        but = i;
+                        closeButton[but] = (Button)XamlReader.Load(newXmlReader);
+                        closeButton[but].Name = "closeButton" + but.ToString();
+                        closeButton[but].Content = but.ToString();
+                        buttonOrder[numberCloseButtons] = but;
+                        okk = false;
+                    }
+                }
+                closeButton[but].IsEnabled = true;
+                closeButton[but].Click += closeButton_Click;
+                simpleTaskManagerStackBar.Children.Add(closeButton[but]);
+                closeButton[but].BeginAnimation(Button.OpacityProperty, newBtnAnimation);
+                simpleTaskManagerStackBar.Children.Add(addButton);
+                addButton.BeginAnimation(Button.MarginProperty, addButtonAnimation);
+                /*
+                if (numberCloseButtons != 4)
+                    addButton.BeginAnimation(Button.MarginProperty, addButtonAnimation);
+                else
+                {
+                    DoubleAnimation newBtnAnimation2 = new DoubleAnimation();
+                    newBtnAnimation2.From = 0;
+                    newBtnAnimation2.To = 1;
+                    newBtnAnimation2.Duration = new Duration(TimeSpan.FromMilliseconds(100));
+                    addButton.BeginAnimation(Button.OpacityProperty, newBtnAnimation2);
+                }
+                If you want to work hard and for nothing , do this                */
+            }
+        }
+
+        private void closeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (canItClose)
+            {
+                canItClose = false;
+                Button button = sender as Button;
+                buttonFakeNumber = Int32.Parse(button.Name.Substring(11));
+                for (int i = 0; i <= numberCloseButtons; i++)
+                    if (buttonOrder[i] == buttonFakeNumber)
+                        buttonRealNumber = i;
+                numberCloseButtons--;
+                ThicknessAnimation addButtonAnimation = new ThicknessAnimation();
+                Thickness ThFrom = new Thickness();
+                ThFrom.Bottom = 0;
+                ThFrom.Left = 0;
+                ThFrom.Right = 0;
+                ThFrom.Top = 0;
+                Thickness ThTo = new Thickness();
+                ThTo.Bottom = 0;
+                ThTo.Left = 0;
+                ThTo.Right = 0;
+                ThTo.Top = -40;
+                addButtonAnimation.From = ThFrom;
+                addButtonAnimation.To = ThTo;
+                addButtonAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(200));
+                DoubleAnimation newBtnAnimation = new DoubleAnimation();
+                newBtnAnimation.From = 1;
+                newBtnAnimation.To = 0;
+                newBtnAnimation.Completed += new EventHandler(closeButtonAnimation_Completed);
+                newBtnAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(200));
+                button.BeginAnimation(Button.OpacityProperty, newBtnAnimation);
+                if (buttonRealNumber <= numberCloseButtons)
+                    closeButton[buttonOrder[buttonRealNumber + 1]].BeginAnimation(Button.MarginProperty, addButtonAnimation);
+                else
+                    addButton.BeginAnimation(Button.MarginProperty, addButtonAnimation);
+            }
+        }
+
+        private void closeButtonAnimation_Completed(object sender, EventArgs e)
+        {
+            simpleTaskManagerStackBar.Children.Remove(closeButton[buttonOrder[buttonRealNumber]]);
+            closeButton[buttonOrder[buttonRealNumber]] = null;
+            ThicknessAnimation addButtonAnimation = new ThicknessAnimation();
+            Thickness ThFrom = new Thickness();
+            ThFrom.Bottom = 0;
+            ThFrom.Left = 0;
+            ThFrom.Right = 0;
+            ThFrom.Top = 40;
+            Thickness ThTo = new Thickness();
+            ThTo.Bottom = 0;
+            ThTo.Left = 0;
+            ThTo.Right = 0;
+            ThTo.Top = 0;
+            addButtonAnimation.From = ThFrom;
+            addButtonAnimation.To = ThTo;
+            addButtonAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(0));
+            
+            if (buttonRealNumber<=numberCloseButtons)
+            {
+                closeButton[buttonOrder[buttonRealNumber+1]].BeginAnimation(Button.MarginProperty, addButtonAnimation);
+            }
+            else
+                addButton.BeginAnimation(Button.MarginProperty, addButtonAnimation);
+            buttonOrder[buttonRealNumber] = -1;
+            for (int i = buttonRealNumber; i <= numberCloseButtons; i++)
+                buttonOrder[i] = buttonOrder[i + 1];
+            buttonOrder[numberCloseButtons + 1] = -1;
+            canItClose = true;
+        }
+
+        private async void monitorButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await this.ShowMessageAsync("WARNING", "m-am besit");
+        }
+
+        public bool startServer()
+        {
+            bool portGood=false;
+            portGood = networkingServerClass.startPort();
+            if (portGood)
+            {
+                Thread startServerThread = new Thread(networkingServerClass.openServer);
+                startServerThread.Start();
+            }
+            return portGood;
+        }
+
+        public void restoreConnectPage1Default()
+        {
+            try {
+                Dispatcher.Invoke(() => connectWindow.Navigate(new connectPage1(this, false)));
+                Dispatcher.Invoke(new Action(() => statusControl.Content = "Status : offline"));
+            }
+            catch (TaskCanceledException) { };
+            
+        }
+
+        private void MetroWindow_StateChanged(object sender, EventArgs e)
+        {
+            switch (this.WindowState)
+            {
+                case WindowState.Minimized:
+                    this.Hide();
+                    break;
+            }
+    }
+
+        public void stopServer()
+        {
+            Thread stopServerThread = new Thread(this.stopServerThread);
+            stopServerThread.Start();
+        }
+
+        public void stopServerThread()
+        {
+            if (networkingServerClass.checkCpuRam())
+            {
+                networkingServerClass.forceCloseCpuRam();
+            }
+            networkingServerClass.closeServer();
+        }
+
+        private async void aboutInfo_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+                await this.ShowMessageAsync("About", "Monitor Computer (build 1)" + "\n" + "@2016 valecs97" + "\n" + "P.S. I have no idea what to write here");
+        }
+
+        private void sendFeedback_click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            sendFeedbackWindow = new sendFeedback(this);
+            sendFeedbackWindow.Show();
+        }
+
+        public async void succesSend()
+        {
+            await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Succes", "Thank you , for your feedback :)")));
+        }
+
+        public async void unsuccesSend()
+        {
+            await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Failed", "Sorry , it seems that we failed to send the e-mail. Please check your internet connection and try again !!")));
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (sendFeedbackWindow!=null)
+                sendFeedbackWindow.Close();
+            OnExitCommands();
+        }
+
+        private void shutDownComputer_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            networkingClientClass.sendCommand("closec");
+        }
+
+        int firstTimeWarning = 3;
+
+        private void warning_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double?> e)
+        {
+            if (firstTimeWarning == 0)
+            {
+                int wwarningCpu = 10, wwarningRAM = 10, wwarningTime = 10;
+                wwarningCpu = (int)warningCPU.Value;
+                wwarningRAM = (int)warningRAM.Value;
+                wwarningTime = (int)warningTime.Value;
+                networkingClientClass.sendCommand("strchg" + wwarningCpu.ToString() + ' ' + wwarningRAM.ToString() + ' ' + wwarningTime.ToString() + ' ');
+            }
+            else
+                firstTimeWarning--;
+        }
+
+        public void stopClient()
+        {
+            Thread stopClientThread = new Thread(this.stopClientThread);
+            stopClientThread.Start();
+        }
+
+        private void stopClientThread()
+        {
+            networkingClientClass.stopMonitoring();
+            Thread stopClientThread = new Thread(networkingClientClass.closeClient);
+            stopClientThread.Start();
+            didItConnect = false;
+        }
+
+        public async void startClient()
+        {
+            int connectionCase = networkingClientClass.makeConnection();
+            didItConnect = false;
+            switch (connectionCase)
+            {
+                case -1: await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Password Incorrect", "Please check your password !"))); break;
+                case 0:
+                    {
+                        await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Password Correct", "You are connected")));
+                        Dispatcher.Invoke(() => statusControl.Content = "Status : online");
+                        didItConnect = true;
+                        taskManagerTab.Dispatcher.Invoke(new Action(() => taskManagerTab.IsEnabled = true));
+                        commandsTab.Dispatcher.Invoke(new Action(() => commandsTab.IsEnabled = true));
+                        shutDownComputer.Dispatcher.Invoke(new Action(() => shutDownComputer.IsEnabled = true));
+                        Thread startThisShiterino = new Thread(networkingClientClass.startMonitoring);
+                        startThisShiterino.Start();
+                    }
+                    break;
+                case 1: await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Connection problem", "Connection inexistent"))); break;
+                case 2: await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Connection problem", "That's not an IP adress"))); break;
+                case 3: await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Connection problem", "Connection time out"))); break;
+                case 4: await this.Dispatcher.BeginInvoke(new Action(async () => await this.ShowMessageAsync("Connection problem", "That's not an IP adress"))); break;
+            }
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 1;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            ThicknessAnimation animation = new ThicknessAnimation();
+            Thickness marginFrom = new Thickness();
+            marginFrom.Left = 30;
+            Thickness marginTo = new Thickness();
+            marginTo.Left = 0;
+            animation.From = marginFrom;
+            animation.To = marginTo;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            connectPage1 connect1;
+            Dispatcher.Invoke(new Action(() => { connect1 = new connectPage1(this, didItConnect); }));
+            Dispatcher.Invoke(new Action(() => connectWindow.Navigate(connect1)));
+            connect1.Dispatcher.Invoke(()=>connect1.BeginAnimation(Page.OpacityProperty, da));
+            connect1.Dispatcher.Invoke(()=> connect1.BeginAnimation(Page.MarginProperty, animation));
+            
+        }
+        public void startThisShit()
+        {
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 1;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(400));
+            ThicknessAnimation animation = new ThicknessAnimation();
+            Thickness marginFrom = new Thickness();
+            marginFrom.Left = 30;
+            Thickness marginTo = new Thickness();
+            marginTo.Left = 0;
+            animation.From = marginFrom;
+            animation.To = marginTo;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(400));
+            connectPage3 connect3 = new connectPage3(this);
+            connectWindow.Navigate(connect3);
+            connect3.BeginAnimation(Page.OpacityProperty, da);
+            connect3.BeginAnimation(Page.MarginProperty, animation);
+            Thread startThisFckingShit = new Thread(startClient);
+            startThisFckingShit.Start();
+        }
+
+        public void notification(string notificationText)
+        {
+            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText01);
+            Windows.Data.Xml.Dom.XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode(notificationText));
+            Windows.Data.Xml.Dom.XmlNodeList toastImageAttributes = toastXml.GetElementsByTagName("image");
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "notificationPhoto.png");
+            ((Windows.Data.Xml.Dom.XmlElement)toastImageAttributes[0]).SetAttribute("src", path);
+            ToastNotification toast = new ToastNotification(toastXml);
+            ToastNotificationManager.CreateToastNotifier("Computer Monitor").Show(toast);
+        }
+
+        private void button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            notification("test test ");
+        }
+    }
+}

@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+
+using System.Windows.Media.Animation;
+
+namespace Monitor_Computer
+{
+    /// <summary>
+    /// Interaction logic for connectPage1.xaml
+    /// </summary>
+    public partial class connectPage1 : Page
+    {
+        public MainWindow mainWindowClass;
+        public connectPage1(MainWindow mainWindowClass,bool didItConnect)
+        {
+            InitializeComponent();
+            this.mainWindowClass = mainWindowClass;
+            if (didItConnect)
+            {
+                connectButton.Content = "Disconnect";
+                serverButton.IsEnabled = false;
+            }
+            else
+            {
+                connectButton.Content = "Connect";
+                serverButton.IsEnabled = true;
+            }
+        }
+
+        private void connectButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (connectButton.Content.ToString() == "Connect")
+            {
+                DoubleAnimation da = new DoubleAnimation();
+                da.From = 0;
+                da.To = 1;
+                da.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+                ThicknessAnimation animation = new ThicknessAnimation();
+                Thickness marginFrom = new Thickness();
+                marginFrom.Left = 30;
+                Thickness marginTo = new Thickness();
+                marginTo.Left = 0;
+                animation.From = marginFrom;
+                animation.To = marginTo;
+                animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+                connectPage2 connect2 = new connectPage2(mainWindowClass);
+                connect2.BeginAnimation(Page.OpacityProperty, da);
+                connect2.BeginAnimation(Page.MarginProperty, animation);
+                this.NavigationService.Navigate(connect2);
+            }
+            else
+            {
+                mainWindowClass.stopClient();
+            }
+            //this.NavigationService.Navigate(new Uri("connectPage2.xaml", UriKind.Relative));
+        }
+
+        private void serverButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (serverButton.Content.ToString() == "Server")
+            {
+                DoubleAnimation da = new DoubleAnimation();
+                da.From = 0;
+                da.To = 1;
+                da.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+                ThicknessAnimation animation = new ThicknessAnimation();
+                Thickness marginFrom = new Thickness();
+                marginFrom.Left = 30;
+                Thickness marginTo = new Thickness();
+                marginTo.Left = 0;
+                animation.From = marginFrom;
+                animation.To = marginTo;
+                animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+                serverPage server1 = new serverPage(mainWindowClass);
+                this.NavigationService.Navigate(server1);
+                server1.BeginAnimation(Page.MarginProperty,animation);
+                server1.BeginAnimation(Page.OpacityProperty, da);
+            }
+            else
+            {
+                mainWindowClass.keepServerOnAfterClient = false;
+                mainWindowClass.stopServer();
+                serverButton.Content = "Server";
+                connectButton.IsEnabled = true;
+            }
+        }
+    }
+}

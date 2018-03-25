@@ -1,0 +1,22 @@
+﻿<Page x:Class="Monitor_Computer.sendFeedbackPage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Monitor_Computer"
+      mc:Ignorable="d" 
+      d:DesignHeight="240"
+      Title="sendFeedbackPage1" Width="480">
+
+    <Grid>
+
+        <Label x:Name="label" Content="From:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Title:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.439,0.813"/>
+        <Label x:Name="label2" Content="Subject:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="fromTextBox" HorizontalAlignment="Left" Height="23" Margin="67,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <TextBox x:Name="titleTextBox" HorizontalAlignment="Left" Height="23" Margin="67,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <TextBox x:Name="subjectTextBox" HorizontalAlignment="Left" Height="157" Margin="67,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="340,180,0,0" VerticalAlignment="Top" Width="122" Height="49" FontSize="20" FontFamily="Segoe UI Black" Click="sendButton_Click"/>
+
+    </Grid>
+</Page>
